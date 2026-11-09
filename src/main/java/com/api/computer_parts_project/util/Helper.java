@@ -11,7 +11,7 @@ public class Helper {
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
         dto.setEmail(entity.getEmail());
-        dto.setPasswordHash(entity.getPasswordHash());
+        dto.setPassword(entity.getPasswordHash());
         dto.setRoleId(entity.getRoleId());
         dto.setCreatedAt(entity.getCreatedAt());
         return dto;
@@ -22,7 +22,7 @@ public class Helper {
         entity.setId(dto.getId());
         entity.setUsername(dto.getUsername());
         entity.setEmail(dto.getEmail());
-        entity.setPasswordHash(dto.getPasswordHash());
+        entity.setPasswordHash(dto.getPassword());
         entity.setRoleId(dto.getRoleId());
         entity.setCreatedAt(dto.getCreatedAt());
         return entity;
@@ -118,7 +118,7 @@ public class Helper {
     public static CategoryDto convertToDto(CategoryEntity entity) {
         CategoryDto dto = new CategoryDto();
         dto.setId(entity.getId());
-        dto.setName(entity.getName());
+        dto.setName(entity.getName().toUpperCase());
         dto.setDescription(entity.getDescription());
         return dto;
     }
@@ -126,7 +126,7 @@ public class Helper {
     public static CategoryEntity convertToEntity(CategoryDto dto) {
         CategoryEntity entity = new CategoryEntity();
         entity.setId(dto.getId());
-        entity.setName(dto.getName());
+        entity.setName(dto.getName().toUpperCase());
         entity.setDescription(dto.getDescription());
         return entity;
     }

@@ -1,5 +1,6 @@
 package com.api.computer_parts_project.service;
 
+import com.api.computer_parts_project.entity.RoleEntity;
 import com.api.computer_parts_project.repository.CategoryRepository;
 import com.api.computer_parts_project.entity.CategoryEntity;
 
@@ -20,6 +21,11 @@ public class CategoryService {
 
     public Optional<CategoryEntity> getCategoryById(Long id) {
         return categoryRepository.findById(id);
+    }
+
+    // Get role by Name
+    public Optional<CategoryEntity> getCategoryByName(String name) {
+        return categoryRepository.findByName(name);
     }
 
     public CategoryEntity createCategory(CategoryEntity category) {

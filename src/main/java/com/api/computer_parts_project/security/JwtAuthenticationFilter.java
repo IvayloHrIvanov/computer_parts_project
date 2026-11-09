@@ -39,9 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-        } catch (Exception ex) {
-            // Log or ignore token errors on public routes so they continue as anonymous requests
-        }
+        } catch (Exception e) {}
 
         filterChain.doFilter(request, response);
     }

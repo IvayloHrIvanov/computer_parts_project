@@ -3,6 +3,7 @@ package com.api.computer_parts_project.service;
 import com.api.computer_parts_project.entity.UserEntity;
 import com.api.computer_parts_project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -12,10 +13,12 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Get all users
@@ -48,6 +51,12 @@ public class UserService {
         if (user.getCreatedAt() == null) {
             user.setCreatedAt(OffsetDateTime.now());
         }
+
+        // Hash the password before saving
+        if (user.getPasswordHash() != null && !user.getPasswordHash().isEmpty()) {
+            user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+        }
+
         return userRepository.save(user);
     }
 
@@ -58,7 +67,11 @@ public class UserService {
 
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
-        user.setPasswordHash(userDetails.getPasswordHash());
+
+        if (userDetails.getPasswordHash() != null && !userDetails.getPasswordHash().isEmpty()) {
+            user.setPasswordHash(passwordEncoder.encode(userDetails.getPasswordHash()));
+        }
+
         user.setRoleId(userDetails.getRoleId());
 
         return userRepository.save(user);

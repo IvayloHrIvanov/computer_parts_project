@@ -45,6 +45,15 @@ public class CategoryController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Get category by Name
+    @PreAuthorize("hasAnyRole('ADMIN', 'OPERATOR', 'USER')")
+    @GetMapping("name/{name}")
+    public ResponseEntity<CategoryDto> getCategoryByName(@PathVariable String name) {
+        return categoryService.getCategoryByName(name.toUpperCase())
+                .map(category -> ResponseEntity.ok(Helper.convertToDto(category)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     // Create a new category
     @PreAuthorize("hasAnyRole('ADMIN', 'OPERATOR')")
     @PostMapping

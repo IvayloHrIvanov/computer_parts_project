@@ -49,7 +49,7 @@ public class RoleController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/name/{name}")
     public ResponseEntity<RoleDto> getRoleByName(@PathVariable String name) {
-        return roleService.getRoleByName(name)
+        return roleService.getRoleByName(name.toUpperCase())
                 .map(role -> ResponseEntity.ok(Helper.convertToDto(role)))
                 .orElse(ResponseEntity.notFound().build());
     }

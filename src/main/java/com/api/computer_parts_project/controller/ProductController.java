@@ -60,7 +60,7 @@ public class ProductController {
     @PreAuthorize("hasAnyRole('ADMIN', 'OPERATOR', 'USER')")
     @GetMapping("/brand/{brand}")
     public ResponseEntity<List<ProductDto>> getProductsByBrand(@PathVariable String brand) {
-        List<ProductDto> products = productService.getProductsByBrand(brand)
+        List<ProductDto> products = productService.getProductsByBrand(brand.toUpperCase())
                 .stream()
                 .map(Helper::convertToDto)
                 .collect(Collectors.toList());

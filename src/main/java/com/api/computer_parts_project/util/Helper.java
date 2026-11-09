@@ -32,14 +32,14 @@ public class Helper {
     public static RoleDto convertToDto(RoleEntity entity) {
         RoleDto dto = new RoleDto();
         dto.setId(entity.getId());
-        dto.setName(entity.getName());
+        dto.setName(entity.getName().toUpperCase());
         return dto;
     }
 
     public static RoleEntity convertToEntity(RoleDto dto) {
         RoleEntity entity = new RoleEntity();
         entity.setId(dto.getId());
-        entity.setName(dto.getName());
+        entity.setName(dto.getName().toUpperCase());
         return entity;
     }
 
@@ -48,7 +48,7 @@ public class Helper {
         ProductDto dto = new ProductDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setBrand(entity.getBrand());
+        dto.setBrand(entity.getBrand().toUpperCase());
         dto.setPrice(entity.getPrice());
         dto.setStockQuantity(entity.getStockQuantity());
         dto.setCategoryId(entity.getCategoryId());
@@ -61,7 +61,7 @@ public class Helper {
         ProductEntity entity = new ProductEntity();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setBrand(dto.getBrand());
+        entity.setBrand(dto.getBrand().toUpperCase());
         entity.setPrice(dto.getPrice());
         entity.setStockQuantity(dto.getStockQuantity());
         entity.setCategoryId(dto.getCategoryId());

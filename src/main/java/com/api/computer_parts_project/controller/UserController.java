@@ -65,7 +65,7 @@ public class UserController {
 
     // Get users by Role ID
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/role/{roleId}")
+    @GetMapping("/roleId/{roleId}")
     public ResponseEntity<List<UserDto>> getUsersByRoleId(@PathVariable Long roleId) {
         List<UserDto> users = userService.getUsersByRoleId(roleId)
                 .stream()

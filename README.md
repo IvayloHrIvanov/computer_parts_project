@@ -1,1 +1,1 @@
-******This project is part of my coursework for completing my second year at the Technical University of Sofia***
+******This project is part of Java course for completing my first semester for masters at the Technical University of Sofia***
